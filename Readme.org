@@ -1,0 +1,20 @@
+* Computer-Programming-2-111
+
+** Introduction:
+
+This is the github repository for storing information of Computer Programming II(B) class in National Taiwan Normal University.
+All of the assignments contain Lab and Homework will be released in this repoitory and moddle system.
+
+** TODO List:
+
+ 1) CMake Tutorial
+ 2) HW0
+ 3) Lab1
+
+** Finished List:
+
+
+** Contact Information:
+
+ If you have any problem or want to reserve TA hour, you can mail to 40947047s@ntnu.edu.tw.
+
