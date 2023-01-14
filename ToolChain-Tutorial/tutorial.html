@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="author" content="blast"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/serif.css" id="theme"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h2 class="author">blast</h2><p class="date">Created: 2023-01-14 六 23:20</p>
+</section>
+<section id="table-of-contents-section">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#/slide-1">1. CMake Tutorial</a>
+<ul>
+<li><a href="#/slide-1-1">1.1. Introduction</a></li>
+<li><a href="#/slide-1-2">1.2. First step: Toolchain</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<section id="slide-1">
+<h2 id="1"><span class="section-number-2">1.</span> CMake Tutorial</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+</section>
+<section id="slide-1-1">
+<h3 id="1-1"><span class="section-number-3">1.1.</span> Introduction</h3>
+<p>
+CMake is a build automation which dedicate in building our program automatically  
+In this tutorial, we will introduce toolchain, Makefile and CMake  
+</p>
+
+<p>
+You may consider why I have to understand these bureaucratic knowledge?  
+Can't I just write some code, click some button to run my code and finally submit it to moodle or other platform?  
+The answer is no. Understanding how to use build automation helps us deploy and distribute our program fast.
+</p>
+
+<pre class="example">
+TODO add example for a huge project :
+</pre>
+
+
+<p>
+Imagine the day when the build automation was not exist, we must write instructions for other developers who want to modify our program project so they can execute and test our program.  
+For those programmers, they have to waste time on following our instruction one by one instead of take advantage of their time on find ways to improve our project.  
+For small projects with tens of files, the building steps may not be a lengthy procedure. But when the program become a large project like Linux Kernel and FreeBSD. It may be error prone and time consuming.  
+The idea behind build automation is to solve this problem by reduce the procedure on building program. We write some scripts to describe how to build our program, and the build automation execute these scripts automatically.  
+In other programmers' sight, they just download our code base, type one or few lines of commands provided by build automation and finally get the program run.  
+So, why not try some build automation to make things easier?  
+</p>
+
+</section>
+<section id="slide-1-2">
+<h3 id="1-2"><span class="section-number-3">1.2.</span> First step: Toolchain</h3>
+<p>
+Before learning how to write build automation scripts, we have to know how to run our program.  
+Nowadays, details on compile our source code is hidden by a series of tools call toolchain. Then the question is what is toolchain?  
+We will only talk about compiled programming languages like C, C++ and Rust in this tutorial.  
+</p>
+
+<p>
+To make our C++ code run, the basic concept needs the following component:
+</p>
+
+<ol>
+<li>Compiler: Program convert your C++ code to assembly code</li>
+<li>Assembler: Program convert assembly code to machine code. This is the program we will finally get.</li>
+<li>Linker: Program link your program with external library like standard library</li>
+<li>Standard Library: Library for common use function and structure</li>
+<li>Debugger: Program that provide debug information or dynamic tracking</li>
+
+</ol>
+
+<p>
+All of the above programs are combined as a toolchain.  
+Most of the operating system providers provide their C/C++ toolchain for developers to build robust application for users. 
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">OS</td>
+<td class="org-left">Toolchain</td>
+</tr>
+
+<tr>
+<td class="org-left">Windows</td>
+<td class="org-left">MSVC</td>
+</tr>
+
+<tr>
+<td class="org-left">MacOS</td>
+<td class="org-left">Clang</td>
+</tr>
+
+<tr>
+<td class="org-left">Linux</td>
+<td class="org-left">GCC</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/search/search.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+
+transition: 'convex',
+transitionSpeed: 'default',
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealNotes, RevealSearch, RevealZoom ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>
