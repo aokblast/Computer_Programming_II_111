@@ -6,10 +6,10 @@ CMake is a build automation which dedicate in building our program automatically
 In this tutorial, we will introduce toolchain, Makefile and CMake
 
 You may consider why I have to understand these bureaucracies?
-Can't I just write some code, click some button to run my code and finally submit it to moodle or other specific platform?
-The answer is no. Understanding how to use build automation helps us deploy and distribute our program fast.
-Imagine the day when the build automation was not exist, we must write instructions for other developers who want to modify our program project so they can execute and test our program.
-For those programmers, they have to waste time on following our instruction one by one instead of take advantage of their time on find ways to improve our project.
+Can't I just write some code, click a button to run my code and everything just work?
+The answer is not really. Understanding how to use build automation helps us deploy and distribute our program fast.
+Imagine the build automation didn't exist, we must write instructions for other developers who want to use our program project so they can build, execute, and test our program.
+For those programmers, they have to waste time on reading and following our instruction instead of take advantage of their time on find ways to improve our project.
 For small projects with tens of files, the building steps may not be a lengthy procedure. But when the program become a large project like Linux Kernel and FreeBSD. It may be error prone and time consuming.
 The idea behind build automation is to solve this problem by reduce the procedure on building program. We write some scripts to describe how to build our program, and the build automation execute these scripts automatically.
 In other programmers' sight, they just download our code base, type one or few lines of commands provided by build automation and finally get the program run.
@@ -21,12 +21,12 @@ Before learning how to write build automation script, we have to know how to run
 Nowadays, details on compile our source code is hidden by a series of tools call toolchain. Then the question is what is toolchain? 
 We will only talk about compiled programming languages like C, C++ and Rust in this tutorial.
 
-To make our C++ code run, the basic concept needs the following component:
+To make our C/C++ code run, the basic concept needs the following component:
 
-1) Compiler: Program convert your C++ code to assembly code
+1) Compiler: Program convert your C/C++ code to assembly code.
 2) Assembler: Program convert assembly code to machine code. This is the program we will finally get.
-3) Linker: Program link your program with external library like standard library
-4) Standard Library: Library for common use function and structure
+3) Linker: Program link your program with external library like standard library.
+4) Standard Library: Library for common use function and structure.
 5) Debugger: Program that provide debug information or dynamic tracking
 
 All of the above programs are combined as a toolchain.
