@@ -81,6 +81,7 @@ Imagine the following directory layout is our project:
       a.c
       b.c
     main.c
+    Makefile
 #+END_SRC
 
 Besides these file, assume that libb needs to use functions from liba, libc needs to use functions from libb and liba.
@@ -95,6 +96,90 @@ You may try to write the building instruction as follow:
   gcc target/liba target/libb/ target/libc main.c -o target/hello
 #+END_SRC
 
-Due to the library dependencies, we cannot change the command order. So anybody who miss any line of command will fail on build project.It is also an easy example? Ok. Try to type commands to build a project contains liba to libz with many dependencies. At this time, I think you may want to give up.
+Due to the library dependencies, we cannot change the command order. So anybody who miss any line of command will fail on build project. It is also an easy example? Ok. Try to type commands to build a project contains liba to libz with many dependencies. At this time, I think you may want to give up.
 
-Obviously, when the project become more and more huge. Hand-typing building steps is not a practical solution to distribute our software. So in the next section we will introduce the basic build automation "Make" for C/C++.
+Obviously, when the project size become more and more big. Hand-typing building steps is not a practical solution to distribute our software. So in the next section we will introduce the basic build automation "Make" for C/C++.
+
+* Second step: The Makefile build automation
+
+Makefile is a traditional build automation in C/C++ but is not the main focus in this lecture. To get more information, I recommend you to take a look in this [[https://seisman.github.io/how-to-write-makefile/][site]]. This section will only introduce the basic concept of makefile.
+Let's begin with a simple example. The following is the directory structure of our project.
+
+#+BEGIN_SRC bash
+  liba/
+    a.c
+  main.c
+  Makefile
+#+END_SRC
+
+The following is the Makefile of the project
+
+#+BEGIN_SRC C 
+  all: liba
+    gcc target/liba main.c -o hello
+    mv hello target/hello
+  liba:
+    gcc -c -o target/liba liba/a.c 
+#+END_SRC
+
+To build the whole project, we just need to use the following command
+
+#+BEGIN_SRC bash
+  make
+#+END_SRC
+
+Boom, you just build the whole project.
+
+Next, let's dive into to the structure of our makefile
+
+#+BEGIN_SRC C
+  <target> : <dependencies>
+    <commands>
+#+END_SRC
+
+The target is the name of of the rule. Each target in makefile is a rule. In example, we have two rules, all and liba. "All" is the default rule.
+If we want to build liba standalone, we can use the following command.
+
+#+BEGIN_SRC bash
+  make liba
+#+END_SRC
+
+The make program will build liba and solve all dependencies on liba.
+
+The dependencies can not only a target but also a file. For example, the following rule is valid.
+
+#+BEGIN_SRC C
+  test: test.c test.h
+    gcc test.c -c -o test
+#+END_SRC
+
+By using a file as dependency, it will check the last modify time of the file. If the time is late than what makefile record. It will recompile. In cotroversy, it will not build again to save time.
+As the information give above, we can write makefile for hello-project as following.
+
+#+BEGIN_SRC C
+  all: liba libb libc
+    gcc target/liba target/libb target/libc main.c -o target/hello
+  liba:
+    gcc liba/a.c libb/b.c -c -o target/liba
+  libb: liba
+    gcc target/liba libb/a.c libb/b.c -c -o target/libb
+  libc: liba libb
+    gcc target/liba target/libb libc/a.c libc/b.c -c -o target/libc
+#+END_SRC
+
+For other people build our program, the just need to type the following command and will get the final program.
+
+#+BEGIN_SRC bash
+  make
+#+END_SRC
+
+In this time, compare with last section, we solve two problems.
+
+1) Makefile writter don't have to be bother from the dependency, all of the dependency will be solved automatically if we write the rule properly.
+2) Other people don't need to following the lengthy instructions. They just need a simple instruction. Make.
+
+But at the same time, we are not satisfy with the hand writting depenedency rule. We are consider that if there are some tools can generate dependencies automatically.
+Yes, we have CMake. What we want to introduce in the next section.
+
+* CMake
+
