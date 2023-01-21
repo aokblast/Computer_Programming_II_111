@@ -47,3 +47,11 @@ void pop_front() {
 int32_t *find(int32_t val) {
   return NULL;
 }
+
+int32_t *begin() {
+	return NULL;
+}
+
+int32_t *end() {
+	return NULL;
+}

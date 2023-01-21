@@ -69,7 +69,7 @@ void push_front(int32_t val);
 void pop_front();
 
 /**
- * find the element of the given value
+ * Find the element of the given value
  * @param val the value you want to find
  * @return pointer of the value. If not found, return NULL
  */
@@ -78,11 +78,25 @@ int32_t *find(int32_t val);
 
 
 /**
- * give the size of lsit
+ * Give the size of list
  * @return return the size of list
  */
 
 uint64_t size();
+
+/**
+ * Give the iterator of first element
+ * @return the pointer of first element
+ */
+
+int32_t *begin();
+
+/**
+ * Give the one after the last iterator
+ * @return The pointer of one after the last element
+ */
+
+int32_t *end();
 
 #ifdef __cplusplus
 }
