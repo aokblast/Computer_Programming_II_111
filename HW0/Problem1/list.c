@@ -48,6 +48,10 @@ int32_t *find(int32_t val) {
   return NULL;
 }
 
+uint64_t size() {
+	return 0;
+}
+
 int32_t *begin() {
 	return NULL;
 }

@@ -6,6 +6,7 @@ build: list.c list.h
 test: build
 	g++ list.o test/main.cpp --std=c++11 -o testProgram `pkg-config --libs gtest`
 	./testProgram
+	rm -f testProgram
 
 clean:
 	rm -f testProgram
