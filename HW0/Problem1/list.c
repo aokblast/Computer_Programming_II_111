@@ -1,6 +1,13 @@
 #include <stddef.h>
 #include "list.h"
 
+
+// the head of list
+int *head = NULL;
+
+// the end of list
+int *tail = NULL;
+
 void clear() {
 
 }
