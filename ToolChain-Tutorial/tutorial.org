@@ -25,11 +25,11 @@ Before learning how to write build automation scripts, we have to know how to ru
 
 The basic concept of toolchain needs the following component:
 
-1) Compiler: Program convert your C++ code to assembly code  
-2) Assembler: Program convert assembly code to machine code. This is the program we will finally get.  
-3) Linker: Program link your program with external library like standard library  
-4) Standard Library: Library for common use function and structure  
-5) Debugger: Program that use debug information or dynamic tracking  
+1) Compiler: Program convert your C++ code to assembly code
+2) Assembler: Program convert assembly code to machine code. This is the program we will finally get.
+3) Linker: Program link your program with external library like standard library
+4) Standard Library: Library for common use function and structure
+5) Debugger: Program that use debug information or dynamic tracking
 
 All of the above programs are combined as a toolchain. Most of the operating system providers provide their C/C++ toolchain for developers to build robust application for users.
 
@@ -181,5 +181,42 @@ In this time, compare with last section, we solve two problems.
 But at the same time, we are not satisfy with the hand writting depenedency rule. We are consider that if there are some tools can generate dependencies automatically.
 Yes, we have CMake. What we want to introduce in the next section.
 
-* CMake
+* Finally: The CMake build automation
 
+Cmake is the tool that can generate Makefile automatically. The instruction of CMake is simple to understand. Let's take hello-project as example:
+
+#+BEGIN_SRC CMake
+  cmake_minimum_required(VERSION 3.1)
+
+  project(hello VERSION 1.0)
+
+  add_library(liba liba/a.c liba/b.c)
+  add_library(libb liba libb/a.c libb/b.c)
+  add_library(libc liba libb libc/a.c libc/b.c)
+
+  add_executable(hello main.c)
+
+  target_link_libraries(hello PRIVATE liba libb libc)
+#+END_SRC
+
+Save the file as CMakeLists.txt.
+The focus on cmake is add_library, add_executable and link_libraries directives.
+These three directives are start with the target name appended with several source files or targets.
+We use add_library to add three libraries and appended with the correct source files and targets.
+Then we add an executable which contain main.c as source file and liked with liba libb libc.
+As you can see, we don't write any command this time. We just describe what libraries we have and what the source file is. All of the targets in the Makefile are generated automatically.
+
+To run cmake, we use the following command:
+
+#+BEGIN_SRC bash
+  cd target
+  cmake ..
+#+END_SRC
+
+It will generate Makefile acording to our CMakeLists.txt. Then we can run:
+
+#+BEGIN_SRC bash
+  make
+#+END_SRC
+
+To generate the program for us.
