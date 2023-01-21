@@ -1,6 +1,9 @@
 #pragma once
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
  * Clear the whole list
@@ -26,6 +29,13 @@ int32_t *insert(int32_t *loc, int32_t val);
 int32_t *erase(int32_t *loc);
 
 /**
+ * Get the element in the back of list
+ * @return value of the last element
+ */
+
+int32_t back();
+
+/**
  * Push the element to the back of list
  * @param val value you want to insert
  */
@@ -37,6 +47,13 @@ void push_back(int32_t val);
  */
 
 void pop_back();
+
+/**
+ * Return the element at begin
+ * @return value in the beginning
+ */
+
+int32_t front();
 
 /**
  * Push the element to the front of list
@@ -66,3 +83,7 @@ int32_t *find(int32_t val);
  */
 
 uint64_t size();
+
+#ifdef __cplusplus
+}
+#endif

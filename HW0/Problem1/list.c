@@ -20,12 +20,20 @@ int32_t *erase(int32_t *loc) {
   return NULL;
 }
 
+int32_t back() {
+	return 0;
+}
+
 void push_back(int32_t val) {
 
 }
 
 void pop_back() {
 
+}
+
+int32_t front() {
+	return 0;
 }
 
 void push_front(int32_t val) {
