@@ -13,7 +13,6 @@ CMake is build automation which dedicates to building our program automatically.
 You may wonder why we have to learn these? Can't we just write some code, click a button to run my code and everything just work as expected?
 
 The answer is: not really. Understanding how to use build automation will help us deploy and distribute our programs faster.
-a
 Now, imagining that build automation doesn't exist, then we must write instructions for other developers who want to use our project so they can build, execute, and test our program, which will cause these programmers, wasting time on reading and following our instructions instead of taking advantage of their time to find ways to improve our project. For small projects with tens of files, the building steps may not be a lengthy procedure. But when it comes to a large project such as Linux Kernel and FreeBSD.
 It may be error-prone and time-consuming. The idea behind building automation is to solve this problem by reducing the procedure of building programs.
 
