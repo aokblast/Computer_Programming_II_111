@@ -137,7 +137,7 @@ TEST(LEVEL2, insert_then_erase) {
 TEST(LEVEL2, erase_target_element) {
 	const int elements[6] = {1,2,3,2,2,4};
 	const int target = 2;
-	while(find(target) != end()) {
+	for(int i = 0;i<3;++i) {
 		erase(find(target));
 	}
 	EXPECT_EQ(size(),3);
