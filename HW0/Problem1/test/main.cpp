@@ -8,16 +8,15 @@ TEST(LEVEL1, push_front) {
 	push_front(2);
 	EXPECT_EQ(front(), 2);
 	auto cur = begin();
-	EXPECT_TRUE(cur != nullptr);
-	EXPECT_EQ(*begin(), 2);
+	EXPECT_NE(cur, end());
+	EXPECT_EQ(data[cur], 2);
 	pop_front();
 	EXPECT_EQ(front(), 1);
 	cur = begin();
-	EXPECT_TRUE(cur != nullptr);
-	EXPECT_EQ(*begin(), 1);
+	EXPECT_NE(cur, end());
+	EXPECT_EQ(data[cur], 1);
 	pop_front();
-	EXPECT_TRUE(begin() == nullptr);
-	EXPECT_TRUE(end() == nullptr);
+	EXPECT_EQ(begin(), end());
 }
 
 TEST(LEVEL1, push_back) {
@@ -28,8 +27,7 @@ TEST(LEVEL1, push_back) {
 	pop_back();
 	EXPECT_EQ(back(), 1);
 	pop_back();
-	EXPECT_TRUE(begin() == nullptr);
-	EXPECT_TRUE(end() == nullptr);
+	EXPECT_EQ(begin(), end());
 }
 
 TEST(LEVEL1, size) {
@@ -54,21 +52,21 @@ TEST(LEVEL1, clear) {
 }
 
 TEST(LEVEL1, find) {
-	EXPECT_TRUE(find(2) == nullptr);
+	EXPECT_EQ(find(2), end());
 	push_front(2);
 	push_back(1);
 	auto cur = find(2);
-	EXPECT_TRUE(cur != nullptr);
-	EXPECT_EQ(*cur, 2);
-	EXPECT_TRUE(find(3) == nullptr);
+	EXPECT_NE(cur, end());
+	EXPECT_EQ(data[cur], 2);
+	EXPECT_EQ(find(3), end());
 	pop_back();
-	EXPECT_TRUE(find(1) == nullptr);
+	EXPECT_EQ(find(1), end());
 	cur = find(2);
-	EXPECT_TRUE(cur != nullptr);
-	EXPECT_EQ(*cur, 2);
+	EXPECT_NE(cur, end());
+	EXPECT_EQ(data[cur], 2);
 	pop_back();
-	EXPECT_TRUE(find(2) == nullptr);
-	EXPECT_TRUE(find(1) == nullptr);
+	EXPECT_EQ(find(2), end());
+	EXPECT_EQ(find(1), end());
 }
 
 TEST(LEVEL1, insert) {
@@ -93,6 +91,7 @@ TEST(LEVEL1, erase) {
 }
 
 int main(int argc, char **argv) {
+	init();
 	testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
 }

@@ -1,9 +1,12 @@
 #pragma once
 #include <stdint.h>
+#define SZ 100
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+extern int data[SZ];
 
 /**
  * Clear the whole list
@@ -12,21 +15,27 @@ extern "C" {
 void clear();
 
 /**
- * Insert the specific elements into given location
- * @param loc the pointer point to the location you want to insert
- * @param val the value you want to insert
- * @return pointer to the location you want to insert
+ * Init function for your list
  */
 
-int32_t *insert(int32_t *loc, int32_t val);
+void init();
+
+/**
+ * Insert the specific elements into given location
+ * @param loc the index point to the location you want to insert
+ * @param val the value you want to insert
+ * @return index of the location after insertion
+ */
+
+size_t insert(size_t loc, int32_t val);
 
 /**
  * Erase the specific elements of given location
- * @param loc the location of element you want to erase
- * @return the location of element of same index after erasure.
+ * @param loc the index of element you want to erase
+ * @return index of element point to next element after erasure
  */
 
-int32_t *erase(int32_t *loc);
+size_t erase(size_t loc);
 
 /**
  * Get the element in the back of list
@@ -37,7 +46,7 @@ int32_t back();
 
 /**
  * Push the element to the back of list
- * @param val value you want to insert
+ * @param val value you want to push
  */
 
 void push_back(int32_t val);
@@ -57,7 +66,7 @@ int32_t front();
 
 /**
  * Push the element to the front of list
- * @param val value you want to insert
+ * @param val value you want to push
  */
 
 void push_front(int32_t val);
@@ -71,10 +80,10 @@ void pop_front();
 /**
  * Find the element of the given value
  * @param val the value you want to find
- * @return pointer of the value. If not found, return NULL
+ * @return index of the element. If not found, return the index of end
  */
 
-int32_t *find(int32_t val);
+size_t find(int32_t val);
 
 
 /**
@@ -82,21 +91,21 @@ int32_t *find(int32_t val);
  * @return return the size of list
  */
 
-uint64_t size();
+size_t size();
 
 /**
- * Give the iterator of first element
- * @return the pointer of first element
+ * Return the iterator of first element
+ * @return the index of first element
  */
 
-int32_t *begin();
+size_t begin();
 
 /**
- * Give the one after the last iterator
- * @return The pointer of one after the last element
+ * Return the one after the last iterator
+ * @return The index of one after the last element
  */
 
-int32_t *end();
+size_t end();
 
 #ifdef __cplusplus
 }

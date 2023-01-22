@@ -1,23 +1,35 @@
 #include <stddef.h>
 #include "list.h"
 
+// data in the list
+int data[SZ] = {0};
 
-// the head of list
-int *head = NULL;
+// left link of current node
+static size_t left_link[SZ] = {0};
 
-// the end of list
-int *tail = NULL;
+// right link of current node
+static size_t right_link[SZ] = {0};
+
+// start of the link
+static size_t head = 0;
+
+// one after the last node
+static size_t tail = 1;
+
+void init() {
+
+}
 
 void clear() {
 
 }
 
-int32_t *insert(int32_t *loc, int32_t val) {
-  return NULL;
+size_t insert(size_t loc, int32_t val) {
+  return 0;
 }
 
-int32_t *erase(int32_t *loc) {
-  return NULL;
+size_t erase(size_t loc) {
+  return 0;
 }
 
 int32_t back() {
@@ -44,18 +56,18 @@ void pop_front() {
 
 }
 
-int32_t *find(int32_t val) {
-  return NULL;
+size_t find(int32_t val) {
+  return 0;
 }
 
-uint64_t size() {
+size_t size() {
 	return 0;
 }
 
-int32_t *begin() {
-	return NULL;
+size_t begin() {
+	return 0;
 }
 
-int32_t *end() {
-	return NULL;
+size_t end() {
+	return 0;
 }
