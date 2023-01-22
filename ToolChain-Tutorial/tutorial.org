@@ -12,19 +12,19 @@ CMake is build automation which dedicates to building our program automatically.
 
 You may wonder why we have to learn these? Can't we just write some code, click a button to run my code and everything just work as expected?
 
-The answer is not really. Understanding how to use build automation will help us deploy and distribute our programs faster.
+The answer is: not really. Understanding how to use build automation will help us deploy and distribute our programs faster.
 a
-Now, imagining that build automation doesn't exist, then we must write instructions for other developers who want to use our project so they can build, execute, and test our program. Those programmers, have to waste time reading and following our instructions instead of taking advantage of their time to find ways to improve our project. For small projects with tens of files, the building steps may not be a lengthy procedure. But when the program becomes a large project like Linux Kernel and FreeBSD.
+Now, imagining that build automation doesn't exist, then we must write instructions for other developers who want to use our project so they can build, execute, and test our program, which will cause these programmers, wasting time on reading and following our instructions instead of taking advantage of their time to find ways to improve our project. For small projects with tens of files, the building steps may not be a lengthy procedure. But when it comes to a large project such as Linux Kernel and FreeBSD.
 It may be error-prone and time-consuming. The idea behind building automation is to solve this problem by reducing the procedure of building programs.
 
-We write some scripts to describe how to build our program, and the build automation executes these scripts automatically. In other programmers' sight, they just download our code base, type one or few lines of commands provided by build automation, and finally get the program run. So, why not try some build automation to make things easier?  
+We write some scripts to describe how to build our program, and the build automation executes these scripts automatically. In other programmers' sight, they just download our code base, type one or few lines of commands provided by build automation, and get the program run. So, why not try some build automation to make things easier?  
 
 
 ** First step: Toolchain
 
-Before learning how to write build automation scripts, we have to know how to run our program. Nowadays, details on compiling our source code are hidden by a series of tools call toolchain. Then the question is what is a toolchain? P.S. We will only talk about compiled programming languages like C, C++, and Rust in this tutorial.  
+Before learning how to write build automation scripts, we have to know how to run our program. Nowadays, details on compiling our source code are hidden by a series of tools called toolchain. Then the question is: what is a toolchain? (P.S. We will only talk about compiled programming languages like C, C++, and Rust in this tutorial.)  
 
-The basic concept of a toolchain needs the following component:
+The basic concept of a toolchain is built on the following components:
 
 1) Compiler: The program converts your C++ code to assembly code
 2) Assembler: The program converts assembly code to machine code. This is the program we will finally get.
@@ -32,7 +32,7 @@ The basic concept of a toolchain needs the following component:
 4) Standard Library: Library for common use function and structure
 5) Debugger: A program that uses debug information or dynamic tracking
 
-All of the above programs are combined as a toolchain. Most of the operating system providers provide their C/C++ toolchain for developers to build the robust application for users.
+All of the above programs are combined as a toolchain. Most of the operating system providers offer their C/C++ toolchain to developers to build the robust application for users.
 
 The following table are toolchains provided by the popular OS.
 
@@ -52,23 +52,23 @@ Take GCC as an example. assume we have the following c code for our hello projec
   }
 #+END_SRC
 
-To let the GCC toolchain generate an executable file for the hello project, we just simply use the following command:
+To get GCC toolchain generate an executable file for the hello project, we just simply use the following command:
 
 #+BEGIN_SRC bash
   gcc tutorial.c -o tutorial
 #+END_SRC
 
-Congratulation, we have just built our hello project. The functionalities of Compiler, Assembler, Linker, and Standard Library are hidden by the toolchain. All of the things we need to know is toolchain will generate an object file that can execute.
+Congratulation, we have just built our hello project. The functionalities of Compiler, Assembler, Linker, and Standard Library are hidden by the toolchain. All of the things we need to know is that toolchain will generate an object file that could be executed.
 
-By using the following command, we can execute our program.
+By using the following command, we can execute our program:
 
 #+BEGIN_SRC bash
   ./tutorial
 #+END_SRC
 
-It seems that we don't need any build automation, right? No.
+It seems like that we don't need any build automation, right?--No.
 
-Imagine the following directory layout is our project:
+Imagining the following directory layout is our project:
 
 #+BEGIN_SRC bash
   hello-project/
@@ -85,9 +85,9 @@ Imagine the following directory layout is our project:
     Makefile
 #+END_SRC
 
-Besides these files, assume that libb needs to use functions from liba, libc needs to use functions from libb and liba.
+Except of these files, assume that libb needs to use functions from liba, libc needs to use functions from libb and liba.
 
-You may try to write the building instruction as follow:
+You may try to write the building instruction as the following lines:
 
 #+BEGIN_SRC bash
   mkdir target
@@ -97,9 +97,9 @@ You may try to write the building instruction as follow:
   gcc target/liba target/libb/ target/libc main.c -o target/hello
 #+END_SRC
 
-Due to the library dependencies, we cannot change the command order. So anybody who misses any line of command will fail on the building project. It is also an easy example. Ok. Try to type commands to build a project containing liba to libz with many dependencies. At this time, I think you may want to give up.
+Due to the library dependencies, we cannot change the command order. So anyone who misses any line of command will fail on the building project. It is also an easy example. Ok. Now let's try to type commands to build a project containing liba to libz with many dependencies. At this moment, I guess you may want to give up already.
 
-When the project size becomes more and more huge. Hand-typing building steps is not a practical solution to distributing our software. So in the next section, we will introduce the basic build automation "Make" for C/C++.
+When the project size becomes larger and larger. Hand-typing building steps is not a practical solution to distributing our software. So in the next section, we will introduce the basic build automation "Make" for C/C++.
 
 * Second step: The Makefile build automation
 
@@ -147,7 +147,7 @@ If we want to build liba standalone, we can use the following command:
 
 The make program will build liba and solve all dependencies on liba.
 
-The dependencies can not only be a target but also a file. For example, the following rule is valid.
+The dependencies not only could be a target, but also a file. For example, the following rule is valid:
 
 #+BEGIN_SRC C
   test: test.c test.h
@@ -174,17 +174,17 @@ For other people to build our program, they only need to type the following comm
   make
 #+END_SRC
 
-This time, comparing with the last section, we solve two problems.
+Now, comparing with the last section, we have solved two problems.
 
 1) Makefile writers don't have to be bothered by the dependency. All the dependencies will be automatically solved if we write the rule properly.
-2) Other people don't need to follow lengthy instructions. They only need simple instruction. Make.
+2) Other people don't need to follow lengthy instructions. They only need one simple instruction--Make.
 
-But at the same time, we are not satisfied with the hand writing dependency rule. We consider that if there are some tools that can generate dependencies automatically.
-Yes, we have CMake, thing we want to introduce in the next section.
+But at the same time, we are not satisfied with the hand writing dependency rule. We wonder: if there are some tools that can generate dependencies automatically?
+-- And yes, that's CMake, what we want to introduce you in the next section.
 
-* Finally: The CMake build automation
+* Final: The CMake build automation
 
-Cmake is the tool that can generate Makefile automatically. The instruction of CMake is simple to understand. Let's take the hello-project as an example:
+Cmake is the tool that can generate Makefile automatically. The instruction of CMake is simple to understand. Let's take the hello-project for example:
 
 #+BEGIN_SRC CMake
   cmake_minimum_required(VERSION 3.1)
@@ -204,8 +204,8 @@ Save the file as CMakeLists.txt.
 The focus on CMake is add_library, add_executable, and link_libraries directives.
 These three directives start with the target name appended with several source files or targets.
 We use add_library to add three libraries and appended them with the correct source files and targets.
-Then we add an executable that contains main.c as a source file and liked with liba libb libc.
-As you can see, we don't write any commands this time. We just describe what libraries we have and what the source file is. All of the targets in the Makefile are generated automatically.
+Then we add an executable file which contains main.c as a source file and liked with liba libb libc.
+And as you can see, we don't write any commands this time. We just describe what libraries we have and what the source file is. All of the targets in the Makefile are generated automatically.
 
 To run CMake, we use the following command:
 
