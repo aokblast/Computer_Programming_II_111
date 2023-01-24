@@ -80,6 +80,7 @@ Imagining the following directory layout is our project:
     libc/
       a.c
       b.c
+    target/
     main.c
     Makefile
 #+END_SRC
@@ -206,16 +207,17 @@ We use add_library to add three libraries and appended them with the correct sou
 Then we add an executable file which contains main.c as a source file and liked with liba libb libc.
 And as you can see, we don't write any commands this time. We just describe what libraries we have and what the source file is. All of the targets in the Makefile are generated automatically.
 
+For consistency, we should put our binary in the target directory. So we use the -B parameter to assign the build directory.
 To run CMake, we use the following command:
 
 #+BEGIN_SRC bash
-  cd target
-  cmake ..
+  cmake -B "./target"
 #+END_SRC
 
-It will generate Makefile according to our CMakeLists.txt. Then we can run:
+It will generate Makefile according to our CMakeLists.txt in target directory. Then we can run:
 
 #+BEGIN_SRC bash
+  cd target
   make
 #+END_SRC
 
