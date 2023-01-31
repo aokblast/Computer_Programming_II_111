@@ -3,11 +3,13 @@
 #include <stdio.h>
 #include "fsm.h"
 
+static const size_t BUFSIZE = 255;
+
 
 int main(int argc, char *argv[]) {
   assert(argc == 2);
 
-  char *line = NULL;
+  char line[BUFSIZE] = {0};
 
   FILE *file = fopen(argv[1], "r");
 
@@ -15,7 +17,7 @@ int main(int argc, char *argv[]) {
 
   f_type f = init();
 
-  while(getline(&line, NULL, file) != EOF) {
+  while(fgets(line, BUFSIZE, file)) {
     int next_val = atoi(line);
     f = (f_type)f(next_val);
   }
