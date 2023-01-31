@@ -3,8 +3,7 @@
 #include <stdio.h>
 #include "fsm.h"
 
-static const size_t BUFSIZE = 255;
-
+#define BUFSIZE 255
 
 int main(int argc, char *argv[]) {
   assert(argc == 2);
