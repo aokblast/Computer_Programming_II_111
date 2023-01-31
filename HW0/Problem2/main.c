@@ -9,9 +9,9 @@ int main(int argc, char *argv[]) {
 
   char *line = NULL;
 
-  FILE *file = fopen("argv[1]", "r");
+  FILE *file = fopen(argv[1], "r");
 
-  assert(file == NULL);
+  assert(file != NULL);
 
   f_type f = init();
 
