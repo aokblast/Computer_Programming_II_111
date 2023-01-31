@@ -54,31 +54,31 @@ After passing all of the tests, you finish this problem.
 
 \section{Problem 2: FSM}
 
-I think you have learned function in CP-I. Also, you have learned pointer. Pointer is
-variable point to some memory address. Surprisingly, function also has it's
-address. So pointer can also points to a function. To understand how to use
-function pointer, you can take a look to
-this
+I think you have learned Function in CP-I. Also, you have learned Pointer. A
+pointer is a variable point to some memory address.
+Surprisingly, the function also has its address. So pointer can also point to a
+function.
+To understand how to use function pointer, you can take a look to this website
 \href{https://chenhh.gitbooks.io/parallel_processing/content/cython/function_pointer.html}{website}.
 
 \subsection{Requirement}
 
-Function pointer helps us solve many problem. In this problem, I want you to implement a
+Function pointer helps us solve many problems. In this problem, I want you to implement a
 \href{https://zh.wikipedia.org/zh-tw/%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA}{FSM
   ( Finite State Machine )} where each node is a function pointer.
 We have only one function called \textbf{init()} in this problem, which will
-return a function pointer of initial node. The prototype of node function 
-\textbf{'void *(int)'} that has a alias called \textbf{f\_type} in
-\textbf{fsm.h}. This function prototype require a index to indicate the next
+return a function pointer of the initial node. The prototype of node function 
+\textbf{'void *(int)'} has an alias called \textbf{f\_type} in
+\textbf{fsm.h}. This function prototype requires an index to indicate the next
 node you want to jump and the return
-value is the pointer to next function. Why the return value is \textbf{void *}
+value is the pointer to the next function. Why the return value is \textbf{void *}
 instead of \textbf{f\_type} is due to the limitation of \textbf{typedef} in C.
 We need to do type conversion manually after calling \textbf{f\_type} object.
-Besides the return value, you also required to print some information on the
-screen when executing function in each node. When the index passed to the
+Besides the return value, you are also required to print some information on the
+screen when executing the function in each node. When the index passed to the
 function is not exist. You should return the pointer to the current node.
-The following graph is the relationship, index and print string required. After
-finishing, also run \textbf{make test} to test your code. If OK output,
+The following graph is the relationship, index, and print string required. After
+finishing, also run \textbf{make test} to test your code. If the string \textbf{OK} output,
 your code is correct.
 
 
