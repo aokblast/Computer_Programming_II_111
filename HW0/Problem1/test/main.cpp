@@ -90,6 +90,66 @@ TEST(LEVEL1, erase) {
 	EXPECT_EQ(size(), 0);
 }
 
+TEST(LEVEL2, erase_and_pop) {
+	push_back(1);	
+	push_back(2);	
+	push_back(3);	
+	erase(find(2));
+	EXPECT_EQ(front(),1);
+	EXPECT_EQ(back(),3);
+	pop_back();
+	EXPECT_EQ(front(),1);
+	EXPECT_EQ(back(),1);
+	EXPECT_EQ(size(), 1);
+	clear();
+}
+ 
+TEST(LEVEL2, erase_all_then_find) {
+	const int values[10] = {4,2,10,7,3,1,8,9,5,6}; 
+
+	for(int i = 1;i<=10;++i) {
+		push_back(i);	
+		EXPECT_EQ(back(), i);
+	}
+	for(int i = 0;i<10;++i) {
+		// erase each element in no particular order.
+		erase(find(values[i]));
+	}
+	EXPECT_EQ(size(),0);
+	for(int i = 1;i<=10;++i) {
+		EXPECT_EQ(find(i), end());
+	}
+}
+
+TEST(LEVEL2, insert_then_erase) {
+	push_back(0);
+	for(int i = 1;i<=5;++i) {
+		insert(find(0),i);
+		EXPECT_EQ(front(), i);
+		EXPECT_EQ(back(), 0);
+		erase(find(i));
+		EXPECT_EQ(front(), 0);
+		EXPECT_EQ(back(), 0);
+	}
+	pop_back();	
+}
+
+TEST(LEVEL2, erase_target_element) {
+	const int elements[6] = {1,2,3,2,2,4};
+	const int target = 2;
+	for(int i = 0;i < 6;++i) {
+		push_back(element[i]);	
+    }
+	for(int i = 0;i<3;++i) {
+		erase(find(target));
+	}
+	EXPECT_EQ(size(),3);
+	for(int i = 0;i<3;++i) {
+		EXPECT_NE(back(),2);
+		pop_back();
+	}
+}
+
 int main(int argc, char **argv) {
 	init();
 	testing::InitGoogleTest(&argc, argv);
