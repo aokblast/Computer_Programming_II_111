@@ -7,5 +7,8 @@ test: build
 	./test.sh
 	echo "OK"
 
+gen: build
+	./gen.sh
+
 clean:
 	rm -f main
