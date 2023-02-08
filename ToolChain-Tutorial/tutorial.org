@@ -80,6 +80,7 @@ Imagining the following directory layout is our project:
     libc/
       a.c
       b.c
+    target/
     main.c
     Makefile
 #+END_SRC
@@ -100,7 +101,7 @@ Due to the library dependencies, we cannot change the command order. So anyone w
 
 When the project size becomes larger and larger. Hand-typing building steps is not a practical solution to distributing our software. So in the next section, we will introduce the basic build automation "Make" for C/C++.
 
-* Second step: The Makefile build automation
+** Second step: The Makefile build automation
 
 Makefile is a traditional build automation in C/C++ but is not the main focus of this lecture. To get more information, I recommend you to take a look at this [[https://seisman.github.io/how-to-write-makefile/][site]]. This section will only introduce the basic concept of the makefile.
 Let's begin with a simple example. The following is the directory structure of our project.
@@ -181,7 +182,7 @@ Now, comparing with the last section, we have solved two problems.
 But at the same time, we are not satisfied with the hand writing dependency rule. We wonder: if there are some tools that can generate dependencies automatically?
 -- And yes, that's CMake, what we want to introduce you in the next section.
 
-* Final: The CMake build automation
+** Final: The CMake build automation
 
 Cmake is the tool that can generate Makefile automatically. The instruction of CMake is simple to understand. Let's take the hello-project for example:
 
@@ -206,16 +207,17 @@ We use add_library to add three libraries and appended them with the correct sou
 Then we add an executable file which contains main.c as a source file and liked with liba libb libc.
 And as you can see, we don't write any commands this time. We just describe what libraries we have and what the source file is. All of the targets in the Makefile are generated automatically.
 
+For consistency, we should put our binary in the target directory. So we use the -B parameter to assign the build directory.
 To run CMake, we use the following command:
 
 #+BEGIN_SRC bash
-  cd target
-  cmake ..
+  cmake -B "./target"
 #+END_SRC
 
-It will generate Makefile according to our CMakeLists.txt. Then we can run:
+It will generate Makefile according to our CMakeLists.txt in target directory. Then we can run:
 
 #+BEGIN_SRC bash
+  cd target
   make
 #+END_SRC
 
