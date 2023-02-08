@@ -32,56 +32,54 @@ If you use Ubuntu Linux, you can use command \textbf{sudo apt install
 \section{Problem 1: Linked List}
 
 Linked list is widely used in operating system kernel due to the high
-performance on insert and delete elements compare with other data structure like
-array. Linked list can be implemented from pointer which we have learned in
+performance on insert and delete elements compare with other data structures like
+array. Linked list can be implemented from pointer, which we have learned in
 Computer Programming - I.
 
 \subsection{Requirement}
 
-In this problem, I want you to implement Linked List of \textbf{int32\_t} in C by
-using array. Because you havn't learn structure, I want you to use array to
+In this problem, You're asked to implement Linked List of \textbf{int32\_t} in C by
+using array. Because you haven't learned structure, I want you to use array to
 emulate the linking relationship. You have to modify all of the functions in \textbf{list.c} to
-comply with the requirement. There are many types of Linked List. In this
+comply with the requirements. There are many types of Linked List. In this
 problem I use the definition in C++
 \href{https://en.cppreference.com/w/cpp/container/list}{std::list}. Not all of
-the function in \textbf{std::list} is required. You only have to finish ones in
-\textbf{list.c}. Of course, you can add some auxilary function to help you
+the functions in \textbf{std::list} are required. You only have to finish ones in
+\textbf{list.c}. Of course, you can add some auxilary functions to help you
 implement linked list.
 
-After finishing the requirement, you can run \textbf{make test} to test all of
+After accomplishing these requirements, you can run \textbf{make test} to test all of
 your codes.
-After passing all of the tests, you finish this problem.
+And once you passed all these tests, you finished this problem.
 
 \section{Problem 2: FSM}
 
-I think you have learned Function in CP-I. Also, you have learned Pointer. A
-pointer is a variable point to some memory address.
-Surprisingly, the function also has its address. So pointer can also point to a
+I think you have learned Function in CP-I. Also, you have learned Pointer: a variable point to some memory address.
+Surprisingly, function also has its address. So pointer can also point to a
 function.
-To understand how to use function pointer, you can take a look to this website
-\href{https://chenhh.gitbooks.io/parallel_processing/content/cython/function_pointer.html}{website}.
+To understand how to use function pointer, you can take a look at this website
+\href{https://chenhh.gitbooks.io/parallel_processing/content/cython/function_pointer.html}{here}.
 
 \subsection{Requirement}
 
-Function pointer helps us solve many problems. In this problem, I want you to implement a
+Function pointer helps us solve many problems. In this problem, You're asked to implement a
 \href{https://zh.wikipedia.org/zh-tw/%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA}{FSM
   ( Finite State Machine )} where each node is a function pointer.
-We have to provide one function called \textbf{init()} and several functions for
+We have to provide one function called \textbf{init()} and several functions with
 nodes in this problem, which will return a function pointer of the initial node. The prototype of node function
 \textbf{'void *(int)'} has an alias called \textbf{f\_type} in
 \textbf{fsm.h}. This function prototype requires an index to indicate the next
-node you want to jump and the return
-value is the pointer to the next function. Why the return value is \textbf{void *}
-instead of \textbf{f\_type} is due to the limitation of \textbf{typedef} in C.
-We need to do type conversion manually after calling \textbf{f\_type} object.
-Besides the return value, you are also required to print some information show
+node you want to jump, and the return
+value will be the pointer to the next function. The reason why the return value is \textbf{void *}
+instead of \textbf{f\_type} is the limitation of \textbf{typedef} in C.
+We need to do type conversion manually after calling \textbf{f\_type} objects.
+Besides from the return value, you are also required to print some information show
 in the middle of node in the under graph(e.g. INIT, BBBB) on the
-screen when executing the function in each node. When the index passed to the
-function is not exist. You should return the pointer to the current node.
+screen when executing the function in each node. Once the index passed to the
+function does not exist anymore, you should return the pointer to the current node.
 The following graph is the relationship(Arrow), index(First line in the circle),
-and print string required(Second line in the circle). After
-finishing, also run \textbf{make test} to test your code. If the string \textbf{OK} output,
-your code is correct.
+and the required print string (Second line in the circle). After
+finishing it, make sure to run \textbf{make test} to test your code. If the output string is \textbf{OK}, your code is correct.
 
 
 \includegraphics[scale=0.23]{graph}
