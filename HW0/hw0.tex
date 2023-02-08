@@ -75,24 +75,22 @@ value is the pointer to the next function. Why the return value is \textbf{void 
 instead of \textbf{f\_type} is due to the limitation of \textbf{typedef} in C.
 We need to do type conversion manually after calling \textbf{f\_type} object.
 Besides the return value, you are also required to print some information show
-in the middle of node in the under graph(e.g. INIT, BBBB) on the
+in the middle of node in figure 2.1 (e.g. INIT, BBBB) on the
 screen when executing the function in each node. When the index passed to the
 function is not exist. You should return the pointer to the current node.
-The following graph is the relationship(Arrow), index(First line in the circle),
+figure 2.1 is the relationship(Arrow), index(First line in the circle),
 and print string required(Second line in the circle). After
 finishing, also run \textbf{make test} to test your code. If the string \textbf{OK} output,
 your code is correct.
 
 
-\includegraphics[scale=0.23]{graph}
+\begin{figure}
+\centering
+\includegraphics[width=70mm]{graph}
+\caption{FSM graph}
+\label{fig:FSM}
 
-
-
-
-
-
-
-
+\end{figure}
 
 \chapter{Preview of C++}
 
