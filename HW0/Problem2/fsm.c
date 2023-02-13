@@ -4,6 +4,3 @@
 f_type init() {
   return NULL;
 }
-
-
-

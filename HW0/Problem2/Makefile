@@ -5,7 +5,6 @@ build: main.c fsm.c fsm.h
 
 test: build
 	./test.sh
-	echo "OK"
 
 gen: build
 	./gen.sh
