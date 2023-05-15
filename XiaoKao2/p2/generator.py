@@ -11,6 +11,7 @@ def get_test_case():
         mp.add(cur)
         query += cur + ' ' + str(random.randint(1, 100000)) + '\n'
 
+    mp = list(mp)
     q = random.randint(100000, 500000)
     query += str(q) + '\n'
 
@@ -19,15 +20,14 @@ def get_test_case():
         if c == 1:
             query += ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(1, 32)))
         else:
-            query += random.sample(mp, 1)[0]
+           query += random.sample(mp, 1)[0]
         query += '\n'
 
     args = ("./sol")
     popen = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    popen.stdin.write(query.encode())
-    popen.stdin.close()
+
+    output, _ = popen.communicate(input=query.encode())
     popen.wait()
-    output = popen.stdout.read()
 
 
     return (query, output.decode())
@@ -35,6 +35,7 @@ def get_test_case():
 
 if __name__ == "__main__":
     for x in range(10):
+        print("Generating test case #{}".format(x))
         (query, output) = get_test_case()
 
         with open('00{:02}.in'.format(x), mode="w") as f:
@@ -42,3 +43,4 @@ if __name__ == "__main__":
 
         with open('00{:02}.out'.format(x), mode="w") as f:
             f.write(output)
+
